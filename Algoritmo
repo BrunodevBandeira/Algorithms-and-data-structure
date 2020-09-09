@@ -1,0 +1,254 @@
+package ConfrontoEntreOs5MetodosDeOrdenação;
+
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+//()
+public class AlgoritmosDeOrdenacao {
+
+	public static void selectSort(int[] vetor) {
+
+		int index1, index2, index3;
+		int aux;
+
+		for (index1 = 0; index1 < vetor.length - 1; index1++) {
+
+			index3 = index1;
+			aux = vetor[index1];
+
+			for (index2 = index1 + 1; index2 < vetor.length; index2++) {
+
+				if (vetor[index2] < aux) {
+					index3 = index2;
+					aux = vetor[index2];
+				}
+
+			}
+
+			vetor[index3] = vetor[index1];
+			vetor[index1] = aux;
+		}
+
+		int tamanhoDoVetor = vetor.length;
+
+		System.out.println("#########################################################");
+		for (int index4 = 0; index4 < tamanhoDoVetor; ++index4) {
+
+			double inicioDoTempo = System.nanoTime();
+			double fimDoTempo = System.nanoTime() - inicioDoTempo;
+			System.out
+					.println("Tempo de execução: " + fimDoTempo / 1000 + " NanoSegundo  SelectSort: " + vetor[index4]);
+
+		}
+		System.out.println("#########################################################");
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner teclado = new Scanner(System.in);
+
+		int[] vetor = new int[10000];
+
+		for (int index1 = 0; index1 < 10000; index1++) {
+
+			double numeroRandom = Math.random() * 10000;
+			int numeroImteiro = (int) numeroRandom;
+
+			vetor[index1] = numeroImteiro;
+
+		}
+
+		String buble = "Se deseja ver o bubbleSort DIGITE " + 1;
+		String select = "Se deseja ver selectSort DIGITE " + 2;
+		String insertion = "Se deseja ver selectSort DIGITE " + 3;
+		String quick = "Se deseja ver quickSort DIGITE " + 4;
+		String merge = "Se deseja ver mergeSort DIGITE " + 5;
+
+		int msg = Integer.parseInt(JOptionPane
+				.showInputDialog(buble + " \n " + select + " \n " + insertion + " \n " + quick + " \n " + merge));
+
+		if (msg == 1) {
+
+			bubbleSort(vetor);
+		}
+		if (msg == 2) {
+
+			selectSort(vetor);
+		}
+		if (msg == 3) {
+			insertionSort(vetor);
+			mostraVetorInsertionSort(vetor);
+		}
+		if (msg == 4) {
+
+			quicksort(vetor, 0, vetor.length - 1);
+			mostraQuickSort(vetor);
+
+		}
+		if (msg == 5) {
+
+			mergeSort(vetor, 0, vetor.length - 1);
+			mostraMergeSort(vetor);
+		}
+
+	}
+
+	public static void bubbleSort(int[] vetor) {
+
+		for (int contador = 0; contador < vetor.length; ++contador) {
+
+			for (int index1 = 0; index1 < vetor.length - 1; ++index1) {
+
+				if (vetor[index1] > vetor[index1 + 1]) {
+
+					int aux = vetor[index1];
+					vetor[index1] = vetor[index1 + 1];
+					vetor[index1 + 1] = aux;
+				}
+			}
+
+		}
+
+		for (int index2 = 0; index2 < vetor.length; ++index2) {
+
+			double inicioDoTempo = System.nanoTime();
+			double fimDoTempo = System.nanoTime();
+			double tempo = fimDoTempo - inicioDoTempo;
+			System.out.println("Tempo de execução: " + tempo / 1000 + " NanoSegundo  BubbleSort: " + vetor[index2]);
+
+		}
+
+	}
+
+	public static void insertionSort(int[] vetor) {
+
+		int tamanhoVetor = vetor.length;
+
+		for (int index1 = 1; index1 < tamanhoVetor; ++index1) {
+			int chave = vetor[index1];
+			int index2 = index1 - 1;
+
+			while (index2 >= 0 && vetor[index2] > chave) {
+				vetor[index2 + 1] = vetor[index2];
+				index2 = index2 - 1;
+			}
+			vetor[index2 + 1] = chave;
+		}
+
+	}
+
+	public static void mostraVetorInsertionSort(int[] vetor) {
+
+		int tamanhoVetor = vetor.length;
+
+		for (int index1 = 0; index1 < tamanhoVetor; ++index1) {
+
+			double inicioDoTempo = System.nanoTime();
+			double fimDoTempo = System.nanoTime() - inicioDoTempo;
+			System.out.println(
+					"Tempo de execução: " + fimDoTempo / 1000 + " NanoSegundo  insertionSort: " + vetor[index1]);
+
+		}
+		System.out.println("#########################################################");
+	}
+
+	public static void quicksort(int[] vetor, int esq, int dir) {
+		if (esq < dir) {
+
+			int j = separaQuicksort(vetor, esq, dir);
+			quicksort(vetor, esq, j - 1);
+			quicksort(vetor, j + 1, dir);
+		}
+	}
+
+	private static int separaQuicksort(int[] vetor, int esq, int dir) {
+		int i = esq + 1;
+		int j = dir;
+		int pivo = vetor[esq];
+
+		while (i <= j) {
+			if (vetor[i] <= pivo) {
+				i++;
+			} else if (vetor[j] > pivo) {
+				j--;
+			} else if (i <= j) {
+				trocaQuickSort(vetor, i, j);
+				i++;
+				j--;
+			}
+		}
+
+		trocaQuickSort(vetor, esq, j);
+		return j;
+	}
+
+	private static void trocaQuickSort(int[] vetor, int i, int j) {
+		int aux = vetor[i];
+		vetor[i] = vetor[j];
+		vetor[j] = aux;
+
+	}
+
+	public static void mostraQuickSort(int[] vetor) {
+
+		int tamanhoVetor = vetor.length;
+
+		for (int index1 = 0; index1 < tamanhoVetor; ++index1) {
+
+			double inicioDoTempo = System.nanoTime();
+			double fimDoTempo = System.nanoTime() - inicioDoTempo;
+			System.out.println("Tempo de execução: " + fimDoTempo / 1000 + " NanoSegundo  QuickSort: " + vetor[index1]);
+		}
+
+	}
+
+	public static void mergeSort(int vetor[], int inicio, int fim) {
+		int meio;
+		if (inicio < fim) {
+			meio = (inicio + fim) / 2;
+			mergeSort(vetor, inicio, meio);
+			mergeSort(vetor, meio + 1, fim);
+			intercala(vetor, inicio, meio, fim);
+		}
+	}
+
+	public static void intercala(int vetor[], int inicio, int meio, int fim) {
+		int index1, index2, index3;
+		int vetor2[] = new int[vetor.length];
+		for (index1 = inicio; index1 <= meio; index1++) {
+			vetor2[index1] = vetor[index1];
+		}
+		for (index2 = meio + 1; index2 <= fim; index2++) {
+			vetor2[fim + meio + 1 - index2] = vetor[index2];
+		}
+		index1 = inicio;
+		index2 = fim;
+		for (index3 = inicio; index3 <= fim; index3++) {
+			if (vetor2[index1] < vetor2[index2]) {
+				vetor[index3] = vetor2[index1];
+				index1 = index1 + 1;
+			} else {
+				vetor[index3] = vetor2[index2];
+				index2 = index2 - 1;
+			}
+		}
+	}
+
+	public static void mostraMergeSort(int[] vetor) {
+
+		int tamanhoVetor = vetor.length;
+
+		System.out.println("#########################################################");
+
+		for (int index1 = 0; index1 < tamanhoVetor; ++index1) {
+
+			double inicioDoTempo = System.nanoTime();
+			double fimDoTempo = System.nanoTime() - inicioDoTempo;
+			System.out.println("Tempo de execução: " + fimDoTempo / 1000 + " NanoSegundo  MergeSort: " + vetor[index1]);
+		}
+
+	}
+
+}
