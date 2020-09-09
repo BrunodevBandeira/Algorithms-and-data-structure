@@ -1,0 +1,63 @@
+package br.com.listaSingularmenteEncadeada;
+
+import javax.swing.JOptionPane;
+
+public class ListaSingularmenteEncadeada {
+
+	private No inicio;
+
+	public void inserir(int elemento) { //Inserindo um elemento
+
+		No novo = new No();				 
+		novo.setElemento(elemento);     
+		novo.setProximo(null);			 
+		if (inicio == null) {			 
+										 
+			inicio = novo;				 
+			
+		} else {
+			
+			No auxiliar;				
+			
+			auxiliar = inicio;			 
+			while (auxiliar.getProximo() != null) {
+				auxiliar = auxiliar.getProximo();
+			}
+			auxiliar.setProximo(novo);
+		}
+	}
+	
+	public int retirar() {
+		
+		int elemento = 0;
+		if(inicio == null) {
+			JOptionPane.showMessageDialog(null, 
+					"Esta lista esta vazia");
+		} else {
+		No auxiliar = inicio;
+		   elemento =  auxiliar.getElemento();
+		inicio = auxiliar.getProximo();
+		JOptionPane.showMessageDialog(null, 
+				"Elemento " + elemento + " retirado com sucesso");
+		}
+		return elemento;
+	}
+
+	public void listar() {
+		if (inicio == null) {
+			JOptionPane.showMessageDialog(null, "Lista singularmente encadeada esta vazia");
+		} else {
+
+			No auxiliar = inicio;
+			while (auxiliar != null) {
+				JOptionPane.showMessageDialog(null, "Elemento visto" + auxiliar.getElemento());
+				auxiliar = auxiliar.getProximo();
+			}
+		}
+	}
+
+	public boolean isEmpty() {
+		return this.inicio == null;
+	}
+
+}

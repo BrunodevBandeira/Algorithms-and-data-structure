@@ -1,0 +1,77 @@
+package br.com.listaSingularmenteEncadeada;
+
+import java.util.Random;
+
+import javax.swing.JOptionPane;
+
+public class Pricipal {
+
+	static ListaSingularmenteEncadeada lista = new ListaSingularmenteEncadeada();
+	public static String msg, titulo;
+	public static String[] simNao = { "Sim", "Não" };
+	public static int naoSim;
+	public static String[] opcao = { "Inserir Elemento", "Listar Elemento", "Retirar Elemento", "Sair" };
+	public static int Opcao;
+
+	public static void main(String[] args) {
+
+		msg = "Lista Singularmente Encadeada";
+		titulo = "Algoritmo e estrutura de dados";
+
+		JOptionPane.showMessageDialog(null, msg, titulo, JOptionPane.PLAIN_MESSAGE);
+
+		do { 
+
+			msg = "Selecione o botão da opção desejada";
+			Opcao = JOptionPane.showOptionDialog(null, msg, titulo, 1, 
+					JOptionPane.QUESTION_MESSAGE, null, opcao, null);
+
+
+			switch(Opcao) {
+			case 0:
+				int elemento = Integer.parseInt(JOptionPane.showInputDialog(null, 
+						"Deseja adicionar um elemento na lista ?"));
+
+				lista.inserir(elemento);
+				break;
+
+			case 1:
+				lista.listar();
+				break;
+
+			case 2:
+				lista.retirar();
+				break;
+
+			case 3:
+				msg = "Deseja sair ?";
+
+				naoSim =  JOptionPane.showOptionDialog(null, msg, titulo, 1, 
+						JOptionPane.QUESTION_MESSAGE, null, simNao, null);
+
+				if(naoSim == 1) 
+					Opcao =- 1;
+				break;
+			}
+		} while(Opcao != 3);
+		System.exit(0);
+	}
+}
+
+/*
+	ListaSingularmenteEncadeada lista = new ListaSingularmenteEncadeada();
+
+	for (int contador = 0; contador < 10; contador++) {
+
+		int numero = (int) Math.floor(Math.random() * 100 + 1);
+		lista.inserir(numero);
+
+	}
+
+	while (!lista.isEmpty()) {
+
+		int e = lista.retirar();
+		System.out.println("Retirei o elemento " + e);
+
+	}
+ */
