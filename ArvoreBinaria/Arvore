@@ -1,0 +1,128 @@
+package br.com.arvoreBinaria;
+
+public class Arvore {
+
+	private Elementos ele;
+	private Arvore direita;
+	private Arvore esquerda;
+
+	public Arvore() {
+		this.ele = null;
+		this.direita = null;
+		this.esquerda = null;
+	}
+
+	public Arvore(Elementos ele) {
+		this.ele = ele;
+		this.direita = null;
+		this.esquerda = null;
+
+		System.out.println("Arvore com o elemento: " + ele.getValor());
+	}
+
+	// MÉTODOS DE CONTROLE.
+	public boolean isEmpty() {
+		return (this.ele == null);
+	}
+
+	public void inserir(Elementos novo) {
+		if (isEmpty()) {
+
+			this.ele = novo;
+
+		} else {
+
+			Arvore novaArvore = new Arvore(novo);
+
+			if (novo.getValor() < this.ele.getValor()) {
+
+				if (this.esquerda == null) { // this.esquerda == null, sou um nó folha ?
+
+					this.esquerda = novaArvore; // se eu sou um folha, eu recebo a novaArvore.Receber a nova arvore
+												// siginifica criar uma
+					// ramificação,portanto se o root é 10 a esquerda o valor de 5, fica como folha.
+
+					System.out
+							.println("Inserir o elemento " + novo.getValor() + " á esquerda de " + this.ele.getValor());
+
+				} else {
+
+					this.esquerda.inserir(novo);// Como o root é 10 e já exista decendancia(O nó folha),
+					// se eu add um valor menor q 5 ou menor de 10,eu insiro ele na arvore.
+
+				}
+
+			} else if (novo.getValor() > this.ele.getValor()) {
+
+				if (this.direita == null) {
+
+					this.direita = novaArvore;
+
+					System.out
+							.println("Inserir o elemento " + novo.getValor() + " á direita de " + this.ele.getValor());
+
+				} else {
+
+					this.direita.inserir(novo);
+				}
+			}
+		}
+	}
+
+	public boolean buscar(int valor) {
+		if (isEmpty()) {
+			return false;
+		}
+
+		if (this.ele.getValor() == valor) {
+			return true;
+
+		} else {
+
+			if (valor < this.ele.getValor()) {
+
+				if (this.esquerda == null) {
+
+					return false;
+
+				} else {
+
+					return this.esquerda.buscar(valor);
+
+				}
+			} else if (valor > this.ele.getValor()) {
+				if (this.direita == null) {
+					return false;
+				} else {
+					return this.direita.buscar(valor);
+				}
+			}
+		}
+		return false;
+	}
+
+	// gets e sets
+	public void setElemento(Elementos ele) {
+		this.ele = ele;
+	}
+
+	public void setDireita(Arvore direita) {
+		this.direita = direita;
+	}
+
+	public void setEsquerda(Arvore esquerda) {
+		this.esquerda = esquerda;
+	}
+
+	public Elementos getElemento() {
+		return this.ele;
+	}
+
+	public Arvore getEsquerda() {
+		return this.esquerda;
+	}
+
+	public Arvore getDireita() {
+		return this.direita;
+	}
+}
