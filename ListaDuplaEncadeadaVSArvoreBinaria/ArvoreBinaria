@@ -1,0 +1,60 @@
+package D3;
+
+public class ArvoreBinaria {
+
+	class No {
+		int numero;
+		No esquerda;
+		No direita;
+
+		No(int valor) {
+			this.numero = valor;
+			direita = null;
+			esquerda = null;
+		}
+		
+		
+	}
+	
+	No root;
+
+	public void add(int valor) {
+		root = addRecursive(root, valor);
+	}
+
+	private No addRecursive(No currentNode, int valor) {
+		if (currentNode == null) {
+			return new No(valor);
+		}
+
+		if (valor < currentNode.numero) {
+			
+			currentNode.esquerda = addRecursive(currentNode.esquerda, valor);
+			
+		} else if (valor > currentNode.numero) {
+			
+			currentNode.direita = addRecursive(currentNode.direita, valor);
+			
+		} else {
+			
+			return currentNode;
+		}
+
+		return currentNode;
+	}
+
+	public No search(int valor) {
+		return searchRecursive(root, valor);
+	}
+
+	private No searchRecursive(No current, int valor) {
+		if (current == null) {
+			return null;
+		}
+		if (valor == current.numero) {
+			return current;
+		}
+		return valor < current.numero ? searchRecursive(current.esquerda, valor)
+				: searchRecursive(current.direita, valor);
+	}
+}

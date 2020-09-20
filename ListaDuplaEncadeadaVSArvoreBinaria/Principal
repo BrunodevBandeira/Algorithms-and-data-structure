@@ -1,0 +1,62 @@
+package D3;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		ListaDupla listaDupla = new ListaDupla();
+		ArvoreBinaria ab = new ArvoreBinaria();
+
+		int[] vetor = generateRandomArray(1000, 1, 1000);
+
+		for (int i = 0; i < vetor.length; i++) {
+			listaDupla.add(vetor[i]);
+			ab.add(vetor[i]);
+		}
+
+		int[] indexes = generateRandomArray(100, 0, vetor.length - 1);
+
+		for (int index: indexes) {
+			int searchKey = vetor[index];
+
+			long startListaDupla = System.nanoTime();
+			ListaDupla.Node ldeNode = listaDupla.search(searchKey);
+			long finishListaDupla = System.nanoTime();
+
+			long startArvoreBinaria = System.nanoTime();
+			ArvoreBinaria.No abNode = ab.search(searchKey);
+			long finishArvoreBinaria = System.nanoTime();
+
+			long timeElapsedLDE = finishListaDupla - startListaDupla;
+			long timeElapsedAB = finishArvoreBinaria - startArvoreBinaria;
+			System.out.println(timeElapsedLDE + " Ns"  + " - " + timeElapsedAB + " Ns");
+			
+			/*
+			 * System.out.println();
+			System.out.println("Lista Encadeada");
+			System.out.println(timeElapsedLDE);
+			System.out.println();
+			System.out.println("Arvore Binaria");
+			System.out.println(timeElapsedAB);
+			 */
+		}
+	}
+
+	public static int[] generateRandomArray(int tamanho, int min, int max) {
+		Random r = new Random();
+		int[] vetor = new int[tamanho];
+		ArrayList<Integer> addedNumbers = new ArrayList<Integer>();
+
+		for (int i = 0; i < vetor.length; i++) {
+			int nextNumber;
+			do {
+				nextNumber = r.nextInt(max+1-min) + min;
+			} while (addedNumbers.contains(nextNumber));
+			vetor[i] = nextNumber;
+			addedNumbers.add(nextNumber);
+		}
+		return vetor;
+	}
+}

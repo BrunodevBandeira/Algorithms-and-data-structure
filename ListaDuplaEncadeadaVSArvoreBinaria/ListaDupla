@@ -1,0 +1,50 @@
+package D3;
+
+public class ListaDupla {
+
+	Node head;
+
+	class Node {
+		int numero;
+		Node apontaParaOanterior;
+		Node ApontaParaOproximo;
+		Node(int d) {
+			numero = d;
+			apontaParaOanterior = null;
+			ApontaParaOproximo = null;
+		}
+	}
+
+	public void add(int value) { 
+		Node newNode = new Node(value); 
+		Node last = head; 
+
+		newNode.ApontaParaOproximo = null; 
+
+		if (head == null) { 
+			newNode.apontaParaOanterior = null; 
+			head = newNode; 
+			return; 
+		} 
+
+		while (last.ApontaParaOproximo != null) 
+			last = last.ApontaParaOproximo; 
+
+		last.ApontaParaOproximo = newNode; 
+		newNode.apontaParaOanterior = last; 
+	} 
+
+	public Node search(int value) {
+		Node currentNode = head;
+		if (currentNode == null) {
+			return null;
+		}
+
+		while (currentNode.ApontaParaOproximo != null) {
+			if (currentNode.numero == value) 
+				return currentNode;
+			currentNode = currentNode.ApontaParaOproximo;
+		}
+		return null;
+	}
+}
