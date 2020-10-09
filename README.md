@@ -8,14 +8,14 @@
  * SelectSort 
  * QuickSort 
  * MergeSort
-  
-  
-    O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, ordena um vetor de tamanho 10000.
+    
+    
+         O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, ordena um vetor de tamanho 10000.
   
   
   2 - **Árvore binária**
   
-    É a implementação do algoritmo.
+    É a implementação desta estrutura de dados.
  
 
  3 - **Confronto entre 2 esses algoritmos**
