@@ -10,18 +10,18 @@
  * MergeSort
     
     
-         O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, ordena um vetor de tamanho 10000.
+       O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, ordena um vetor de tamanho 10000.
   
   
   2 - **Árvore binária**
   
-    É a implementação desta estrutura de dados.
+      É a implementação desta estrutura de dados.
  
 
  3 - **Confronto entre 2 esses algoritmos**
  
-    O propósito desse projeto é amostrar qual algoritmo é mais rapido na inserção de dados.
+     O propósito desse projeto é amostrar qual algoritmo é mais rapido na inserção de dados.
     
  4 - **Lista singularmente encadeada**
  
-     É a implementação do algoritmo.
+      É a implementação do algoritmo.
