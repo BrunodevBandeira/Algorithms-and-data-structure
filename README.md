@@ -10,7 +10,8 @@
  * MergeSort
     
     
-       O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, ordena um vetor de tamanho 10000.
+       O propósito desse projeto é mostrar o tempo em que cada algoritmo de ordenação, 
+       ordena um vetor de tamanho 10000.
   
   
   2 - **Árvore binária**
