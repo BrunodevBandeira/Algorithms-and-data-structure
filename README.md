@@ -26,3 +26,8 @@
  4 - **Lista singularmente encadeada**
  
       É a implementação do algoritmo.
+
+ 5 - **Fogo Doom**
+ 
+    Esse projeto foi inspirado em um video do Felipe deschamps, onde ele explica 
+    o algoritmo passo a passo em JavaScript.
